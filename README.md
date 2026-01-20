@@ -6,6 +6,11 @@ A touch-optimized 6x6 Mini Sudoku game built as a Progressive Web App (PWA). Per
 
 **🌐 [Play Mini Sudoku](https://codeispoetry.github.io/minisudoku/)** - Try it directly in your browser!
 
+![QR Code](qrcode.png)
+
+*Scan to open Mini Sudoku on your mobile device*
+
+
 ## 🎮 Features
 
 ### Core Gameplay
