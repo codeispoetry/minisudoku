@@ -2,6 +2,10 @@
 
 A touch-optimized 6x6 Mini Sudoku game built as a Progressive Web App (PWA). Perfect for quick brain training sessions on any device!
 
+## 🎮 Play Now
+
+**🌐 [Play Mini Sudoku](https://codeispoetry.github.io/minisudoku/)** - Try it directly in your browser!
+
 ## 🎮 Features
 
 ### Core Gameplay
@@ -30,7 +34,9 @@ A touch-optimized 6x6 Mini Sudoku game built as a Progressive Web App (PWA). Per
 ## 🚀 Quick Start
 
 ### Online Access
-Deploy to any web server and access via browser at `/sudoku/` path.
+🎯 **[Play Now on GitHub Pages](https://codeispoetry.github.io/minisudoku/)**
+
+The game is deployed and ready to play! You can also deploy to any web server and access via browser at `/sudoku/` path.
 
 ### Local Development
 1. Clone or download the project files
