@@ -1,13 +1,13 @@
 const CACHE_NAME = 'mini-sudoku-v1';
 const urlsToCache = [
-    '/minisudoku/',
-    '/minisudoku/index.html',
-    '/minisudoku/style.css',
-    '/minisudoku/sudoku.js',
-    '/minisudoku/app.js',
-    '/minisudoku/manifest.json',
-    '/minisudoku/icon-192x192.png',
-    '/minisudoku/icon-512x512.png'
+    './',
+    './index.html',
+    './style.css',
+    './sudoku.js',
+    './app.js',
+    './manifest.json',
+    './icon-192x192.png',
+    './icon-512x512.png'
 ];
 
 // Installation

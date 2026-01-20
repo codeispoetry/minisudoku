@@ -2,19 +2,19 @@
     "name": "Laurins Sudoku",
     "short_name": "Laurins Sudoku",
     "description": "Ein Sudoku für Laurin",
-    "start_url": "/minisudoku/",
-    "scope": "/minisudoku/",
+    "start_url": "./",
+    "scope": "./",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#2196F3",
     "icons": [
         {
-            "src": "/minisudoku/icon-192x192.png",
+            "src": "./icon-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/minisudoku/icon-512x512.png",
+            "src": "./icon-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
