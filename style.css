@@ -115,6 +115,18 @@ main {
     color: white;
 }
 
+.sudoku-cell.row-highlight,
+.sudoku-cell.col-highlight,
+.sudoku-cell.block-highlight {
+    background: #fce4ec;
+}
+
+.sudoku-cell.given.row-highlight,
+.sudoku-cell.given.col-highlight,
+.sudoku-cell.given.block-highlight {
+    background: #fce4ec;
+}
+
 .sudoku-cell.given {
     background: #e8e8e8;
     color: #333;
@@ -170,7 +182,6 @@ main {
 
 .number-btn:hover {
     background: #f5f5f5;
-    transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -183,6 +194,14 @@ main {
     background: #ff5722;
     color: white;
     font-size: 2rem;
+    grid-column: 2;
+    display: flex;
+    width: 75%;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    align-self: center;
 }
 
 .clear-btn:hover {

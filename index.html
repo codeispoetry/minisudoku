@@ -36,6 +36,9 @@
                 <button class="number-btn" data-number="5">5</button>
                 <button class="number-btn" data-number="6">6</button>
                 <button class="number-btn clear-btn" data-number="">×</button>
+                <div style="display: flex; justify-content: end; align-items: end;">
+                    <img src="laurin.jpg" alt="App Icon" class="app-icon" width="70%" style="border-radius: 50%;border: 2px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.3);">
+                </div>
             </div>
             
             <div id="message" class="message"></div>
@@ -63,7 +66,7 @@
                 </div>
                 <div class="win-content">
                     <p>Du hast das Sudoku in <span id="finalTime"></span> gelöst!</p>
-                    <input type="text" id="playerName" placeholder="Dein Name" maxlength="20">
+                    <input type="text" id="playerName" placeholder="Dein Name" maxlength="20" autocapitalize="characters" inputmode="text">
                     <div class="win-buttons">
                         <button id="saveScore" class="save-score-btn">Bestzeit speichern</button>
                         <button id="skipSave" class="skip-save-btn">Überspringen</button>

@@ -1,8 +1,9 @@
 {
-    "name": "Mini Sudoku PWA",
-    "short_name": "Mini Sudoku",
-    "description": "Ein touch-optimiertes 6x6 Mini Sudoku Spiel",
-    "start_url": "/",
+    "name": "Laurins Sudoku",
+    "short_name": "Laurins Sudoku",
+    "description": "Ein Sudoku für Laurin",
+    "start_url": "/sudoku/",
+    "scope": "/sudoku/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#2196F3",

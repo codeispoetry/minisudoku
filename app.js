@@ -126,6 +126,14 @@ class SudokuApp {
                 e.preventDefault();
             }
         }, { passive: false });
+
+        // Klick außerhalb des Sudoku-Grids hebt Auswahl auf
+        document.addEventListener('click', (e) => {
+            // Prüfe ob der Klick außerhalb des Sudoku-Grids ist
+            if (!e.target.closest('.sudoku-grid') && !e.target.closest('.modal')) {
+                this.clearSelection();
+            }
+        });
     }
 
     // Neues Spiel starten
@@ -160,6 +168,9 @@ class SudokuApp {
         
         const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
         cell.classList.add('selected');
+        
+        // Zeile, Spalte und Block hervorheben
+        this.highlightRelatedCells(row, col);
     }
 
     // Auswahl aufheben
@@ -168,7 +179,43 @@ class SudokuApp {
             const cell = document.querySelector(`[data-row="${this.selectedCell.row}"][data-col="${this.selectedCell.col}"]`);
             cell.classList.remove('selected');
         }
+        
+        // Alle Hervorhebungen entfernen
+        document.querySelectorAll('.sudoku-cell').forEach(cell => {
+            cell.classList.remove('row-highlight', 'col-highlight', 'block-highlight');
+        });
+        
         this.selectedCell = null;
+    }
+
+    // Zeile, Spalte und Block hervorheben
+    highlightRelatedCells(selectedRow, selectedCol) {
+        // Berechne Block-Position (3x2 Blöcke)
+        const blockStartRow = Math.floor(selectedRow / 2) * 2;
+        const blockStartCol = Math.floor(selectedCol / 3) * 3;
+        
+        for (let row = 0; row < 6; row++) {
+            for (let col = 0; col < 6; col++) {
+                const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+                
+                // Zeile hervorheben
+                if (row === selectedRow && col !== selectedCol) {
+                    cell.classList.add('row-highlight');
+                }
+                
+                // Spalte hervorheben
+                if (col === selectedCol && row !== selectedRow) {
+                    cell.classList.add('col-highlight');
+                }
+                
+                // Block hervorheben (3x2)
+                if (row >= blockStartRow && row < blockStartRow + 2 &&
+                    col >= blockStartCol && col < blockStartCol + 3 &&
+                    !(row === selectedRow && col === selectedCol)) {
+                    cell.classList.add('block-highlight');
+                }
+            }
+        }
     }
 
     // Zahl eingeben
