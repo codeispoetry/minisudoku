@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laurins Mini-Sudoku</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon-192x192.png">
+    <meta name="theme-color" content="#2196F3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Laurins Mini-Sudoku">
+</head>
+<body>
+    <div class="app">
+        <header>
+            <h1>Laurins Mini-Sudoku</h1>
+            <div class="header-controls">
+                <div id="timer" class="timer">00:00</div>
+                <button id="highscoreBtn" class="highscore-btn">Bestzeiten</button>
+                <button id="newGameBtn" class="new-game-btn">Neues Spiel</button>
+            </div>
+        </header>
+        
+        <main>
+            <div id="sudokuGrid" class="sudoku-grid">
+                <!-- Wird dynamisch generiert -->
+            </div>
+            
+            <div class="number-buttons">
+                <button class="number-btn" data-number="1">1</button>
+                <button class="number-btn" data-number="2">2</button>
+                <button class="number-btn" data-number="3">3</button>
+                <button class="number-btn" data-number="4">4</button>
+                <button class="number-btn" data-number="5">5</button>
+                <button class="number-btn" data-number="6">6</button>
+                <button class="number-btn clear-btn" data-number="">×</button>
+            </div>
+            
+            <div id="message" class="message"></div>
+        </main>
+        
+        <!-- Highscore Modal -->
+        <div id="highscoreModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Bestzeiten</h2>
+                    <button id="closeHighscore" class="close-btn">&times;</button>
+                </div>
+                <div id="highscoreList" class="highscore-list">
+                    <!-- Wird dynamisch gefüllt -->
+                </div>
+                <button id="clearHighscores" class="clear-highscores-btn">Bestzeiten löschen</button>
+            </div>
+        </div>
+        
+        <!-- Gewonnen Modal -->
+        <div id="winModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Herzlichen Glückwunsch! 🎉</h2>
+                </div>
+                <div class="win-content">
+                    <p>Du hast das Sudoku in <span id="finalTime"></span> gelöst!</p>
+                    <input type="text" id="playerName" placeholder="Dein Name" maxlength="20">
+                    <div class="win-buttons">
+                        <button id="saveScore" class="save-score-btn">Bestzeit speichern</button>
+                        <button id="skipSave" class="skip-save-btn">Überspringen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="sudoku.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

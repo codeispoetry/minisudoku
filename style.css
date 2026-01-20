@@ -1,0 +1,465 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    touch-action: manipulation;
+    user-select: none;
+}
+
+.app {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    color: white;    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.timer {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.highscore-btn, .new-game-btn {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    touch-action: manipulation;
+}
+
+.highscore-btn:hover, .new-game-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.highscore-btn:active, .new-game-btn:active {
+    transform: scale(0.95);
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.sudoku-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px;
+    background: #333;
+    padding: 2px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 1;
+}
+
+.sudoku-cell {
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    touch-action: manipulation;
+}
+
+.sudoku-cell:hover {
+    background: #f0f8ff;
+}
+
+.sudoku-cell.selected {
+    background: #2196F3;
+    color: white;
+}
+
+.sudoku-cell.given {
+    background: #e8e8e8;
+    color: #333;
+    cursor: default;
+}
+
+.sudoku-cell.given:hover {
+    background: #e8e8e8;
+}
+
+.sudoku-cell.error {
+    background: #ffebee;
+    color: #d32f2f;
+    animation: shake 0.5s ease-in-out;
+}
+
+.sudoku-cell.correct {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
+/* 3x2 Blöcke hervorheben */
+.sudoku-cell:nth-child(6n+3) {
+    border-right: 3px solid black;
+}
+
+.sudoku-cell:nth-child(n+7):nth-child(-n+12),
+.sudoku-cell:nth-child(n+19):nth-child(-n+24) {
+    border-bottom: 3px solid black;
+}
+
+.number-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 320px;
+}
+
+.number-btn {
+    aspect-ratio: 1;
+    background: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    touch-action: manipulation;
+    min-height: 60px;
+}
+
+.number-btn:hover {
+    background: #f5f5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.number-btn:active {
+    transform: scale(0.95) translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.clear-btn {
+    background: #ff5722;
+    color: white;
+    font-size: 2rem;
+}
+
+.clear-btn:hover {
+    background: #f4511e;
+}
+
+.message {
+    color: white;
+    text-align: center;
+    font-size: 1.2rem;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message.success {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.message.error {
+    color: #ff5722;
+    font-weight: bold;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Mobile Optimierungen */
+@media (max-width: 480px) {
+    .app {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .new-game-btn {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+    
+    .sudoku-cell {
+        font-size: 1.2rem;
+    }
+    
+    .number-btn {
+        font-size: 1.2rem;
+        min-height: 50px;
+    }
+    
+    .clear-btn {
+        font-size: 1.5rem;
+    }
+}
+
+/* Sehr kleine Bildschirme */
+@media (max-width: 360px) {
+    .sudoku-cell {
+        font-size: 1rem;
+    }
+    
+    .number-btn {
+        font-size: 1rem;
+        min-height: 45px;
+    }
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    max-width: 400px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.highscore-list {
+    padding: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.highscore-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    margin: 8px 0;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #2196F3;
+}
+
+.highscore-rank {
+    font-weight: bold;
+    color: #2196F3;
+    width: 30px;
+}
+
+.highscore-name {
+    flex: 1;
+    margin-left: 10px;
+    color: #333;
+}
+
+.highscore-time {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    color: #666;
+}
+
+.clear-highscores-btn {
+    margin: 0 20px 20px;
+    padding: 10px 20px;
+    background: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: calc(100% - 40px);
+    font-size: 14px;
+}
+
+.clear-highscores-btn:hover {
+    background: #f4511e;
+}
+
+.win-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.win-content p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+#finalTime {
+    color: #2196F3;
+    font-weight: bold;
+}
+
+#playerName {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#playerName:focus {
+    border-color: #2196F3;
+    outline: none;
+}
+
+.win-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.save-score-btn, .skip-save-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.save-score-btn {
+    background: #4caf50;
+    color: white;
+}
+
+.save-score-btn:hover {
+    background: #45a049;
+}
+
+.skip-save-btn {
+    background: #ddd;
+    color: #666;
+}
+
+.skip-save-btn:hover {
+    background: #ccc;
+}
+
+.empty-highscores {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 40px 20px;
+}
+
+/* Mobile Anpassungen für Header */
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .header-controls {
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .timer {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+    
+    .highscore-btn, .new-game-btn {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+}
