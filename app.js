@@ -134,6 +134,12 @@ class SudokuApp {
                 this.clearSelection();
             }
         });
+
+        document.querySelector('#portrait').addEventListener('click', () => {
+           // spiele die sounddatei sound.mp3 ab
+              const audio = new Audio('sound.ogg');
+              audio.play();
+        })
     }
 
     // Neues Spiel starten

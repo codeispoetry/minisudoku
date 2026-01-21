@@ -90,7 +90,6 @@ class MiniSudoku {
         for (let blockRow = 0; blockRow <= 2; blockRow++) {
             for (let blockCol = 0; blockCol < 2; blockCol++) {
                 let hasRemoved = false;
-                console.log("Checking block:", blockRow, blockCol);
                 for (let i = 0; i < 2; i++) {
                     for (let j = 0; j < 3; j++) {
                         if (puzzle[blockRow * 2 + i][blockCol * 3 + j] === 0) {
