@@ -81,11 +81,29 @@ class MiniSudoku {
         this.solution = complete.map(row => [...row]);
         
         const puzzle = complete.map(row => [...row]);
-        
         // Pro Zeile nur eine Zahl entfernen
         for (let row = 0; row < this.size; row++) {
             const col = Math.floor(Math.random() * this.size);
             puzzle[row][col] = 0;
+        }
+        // Falls ein einem Block keine Zahl entfernt wurde, entferne eine zufällige Zahl
+        for (let blockRow = 0; blockRow <= 2; blockRow++) {
+            for (let blockCol = 0; blockCol < 2; blockCol++) {
+                let hasRemoved = false;
+                console.log("Checking block:", blockRow, blockCol);
+                for (let i = 0; i < 2; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        if (puzzle[blockRow * 2 + i][blockCol * 3 + j] === 0) {
+                            hasRemoved = true;
+                        }
+                    }
+                }
+                if (!hasRemoved) {
+                    const i = Math.floor(Math.random() * 2);
+                    const j = Math.floor(Math.random() * 3);
+                    puzzle[blockRow * 2 + i][blockCol * 3 + j] = 0;
+                }
+            }
         }
         
         this.grid = puzzle;
