@@ -261,6 +261,11 @@ class SudokuApp {
             } else {
                 cell.classList.remove('correct');
                 cell.classList.add('error');
+
+                // Vibrieren bei Fehler
+                if (navigator.vibrate) {
+                    navigator.vibrate(200);
+                }
                 
                 // Fehler-Animation
                 setTimeout(() => {
@@ -305,12 +310,6 @@ class SudokuApp {
     registerServiceWorker() {
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js')
-                .then(registration => {
-                    console.log('SW registered:', registration);
-                })
-                .catch(error => {
-                    console.log('SW registration failed:', error);
-                });
         }
     }
 
@@ -457,7 +456,4 @@ let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    
-    // Zeige Install-Button falls gewünscht
-    console.log('App kann installiert werden');
 });
