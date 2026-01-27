@@ -357,7 +357,10 @@ class SudokuApp {
         const finalTime = this.getCurrentTime();
         document.getElementById('finalTime').textContent = this.formatTime(finalTime);
         document.getElementById('playerName').value = '';
-        document.getElementById('winModal').classList.remove('hidden');
+        
+        setTimeout(() => {
+            document.getElementById('winModal').classList.remove('hidden');
+        }, 700);
         
         // Fokus auf Name-Eingabe nach kurzer Verzögerung
         setTimeout(() => {
