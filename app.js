@@ -267,10 +267,15 @@ class SudokuApp {
                     navigator.vibrate(200);
                 }
                 
+                // Playfield shake animation
+                const grid = document.getElementById('sudokuGrid');
+                grid.classList.add('playfield-error');
+                
                 // Fehler-Animation
                 setTimeout(() => {
                     cell.classList.remove('error');
-                }, 500);
+                    grid.classList.remove('playfield-error');
+                }, 600);
             }
         }
     }
