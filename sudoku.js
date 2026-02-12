@@ -84,12 +84,7 @@ class MiniSudoku {
         // Pro Zeile nur eine Zahl entfernen
         const rows = this.shuffle(Array.from({ length: this.size }, (_, i) => i));
         
-        for (let row = 0; row < rows.length/2; row++) {
-            // Find which column has the number 5 in this row
-            const colWith5 = complete[rows[row]].indexOf(5);
-            puzzle[rows[row]][colWith5] = 0;
-        }
-        for (let row = rows.length/2; row < rows.length; row++) {
+        for (let row = 0; row < rows.length; row++) {
             const col = Math.floor(Math.random() * this.size);
             puzzle[rows[row]][col] = 0;
         }
